@@ -1,6 +1,6 @@
 const express = require("express")
 const {registerController, loginController, testController} = require('../controllers/authControllers');
-const requireSignIn = require("../middlewares/authMiddleware");
+const {requireSignIn, isAdmin} = require("../middlewares/authMiddleware");
 
 
 //Router Object
@@ -15,6 +15,6 @@ router.post('/register', registerController)
 router.post('/login', loginController)
 
 //test Route
-router.get('/test', requireSignIn, testController)
+router.get('/test', requireSignIn, isAdmin, testController)
 
 module.exports = router
