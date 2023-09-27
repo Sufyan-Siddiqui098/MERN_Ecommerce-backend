@@ -25,4 +25,9 @@ router.get('/user-auth', requireSignIn, (req, res)=>{
     res.status(200).send({ok: true})
 })
 
+//Admin protected route
+router.get('/admin-auth', requireSignIn, isAdmin, (req, res)=>{
+    return res.status(200).send({ok: true})
+})
+
 module.exports = router
