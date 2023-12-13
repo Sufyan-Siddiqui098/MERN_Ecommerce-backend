@@ -8,6 +8,11 @@ const {
   deleteProductController,
   updateProductController,
   filterProductController,
+  getProductCountController,
+  getProductListController,
+  getSearchProductController,
+  getRelatedProductController,
+  getCategoryRelatedProduct,
 } = require("../controllers/productControllers");
 const formidableMiddleware = require("express-formidable");
 
@@ -46,5 +51,19 @@ router.get("/product-photo/:pid", getProductPhotoController);
 
 //Get filter product || POST
 router.post("/filter-product", filterProductController);
+
+//Get total count of products
+router.get('/product-count', getProductCountController)
+
+//Get products list based on pages
+router.get('/product-list/:page', getProductListController)
+//Get searched products
+router.get('/product-search/:keyword', getSearchProductController)
+
+//Get related-Products ----- pid(product id) && cid(category id)
+router.get('/related-product/:pid/:cid', getRelatedProductController);
+
+//Get category specific products
+router.get('/product-category/:slug', getCategoryRelatedProduct)
 
 module.exports = router;
