@@ -1,5 +1,5 @@
 const express = require("express")
-const {registerController, loginController, testController, forgetPasswordController} = require('../controllers/authControllers');
+const {registerController, loginController, testController, forgetPasswordController, updateUserInfoController} = require('../controllers/authControllers');
 const {requireSignIn, isAdmin} = require("../middlewares/authMiddleware");
 
 
@@ -19,6 +19,9 @@ router.get('/test', requireSignIn, isAdmin, testController)
 
 //forget password || POST
 router.post('/forget-password', forgetPasswordController)
+
+// Update User Profile - except email
+router.put("/update-profile", requireSignIn, updateUserInfoController) 
 
 //Protected Route auth
 router.get('/user-auth', requireSignIn, (req, res)=>{
